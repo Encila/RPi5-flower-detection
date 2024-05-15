@@ -1,5 +1,5 @@
 
-# RPi5 Flowers Detection
+# RPi5 Flower Detection
 
 This project utilizes the Raspberry Pi Camera Module 3 on a Raspberry Pi 5 along with TensorFlow Lite and OpenCV to detect and classify flowers using a pre-trained model. The application displays the video feed with annotations using PyQt for visualization.
 
