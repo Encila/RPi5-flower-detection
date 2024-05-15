@@ -19,7 +19,7 @@ This project utilizes the Raspberry Pi Camera Module 3 on a Raspberry Pi 5 along
 Ensure you have the following installed on your Raspberry Pi:
 
 - Python 3.11
-- Conda
+- MiniConda
 - Pi Camera Module 3
 
 ### Using the Setup Script
