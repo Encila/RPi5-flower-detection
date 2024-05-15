@@ -39,7 +39,7 @@ bash setup.sh
 To run the application with the UI:
 
 ```bash
-python main.py --model=../models/orchidees/model.tflite --debug
+python main.py --debug
 ```
 
 ### Running Exported Models
