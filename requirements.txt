@@ -1,0 +1,8 @@
+ultralytics==8.0.221
+tensorflow==2.13.1
+onnx==1.15.0
+onnxruntime==1.16.3
+onnxsim==0.4.33
+flatbuffers==23.5.26
+picamera2
+opencv-python-headless==4.6.0.66
