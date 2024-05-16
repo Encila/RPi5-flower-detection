@@ -2,12 +2,15 @@
 
 # Update and install prerequisites
 sudo apt-get update
-sudo apt-get install -y cmake python3-libcamera python3-kms++ python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg python3-pip
+sudo apt-get install -y cmake
 
 # Create conda environment
 conda create -n flower_detection python=3.11 -y
-source ~/miniconda3/etc/profile.d/conda.sh
 conda activate flower_detection
+
+# Install libcamera and PyQt5
+sudo apt install -y python3-libcamera python3-kms++
+sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg python3-pip
 
 # Install Python packages from requirements.txt
 pip install -r requirements.txt

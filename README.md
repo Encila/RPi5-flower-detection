@@ -57,8 +57,8 @@ To export a model from Teachable Machine:
 
 1. **Train your model** on [Teachable Machine](https://teachablemachine.withgoogle.com/).
 2. **Export as TensorFlow Lite**: Click `Export Model` and select `TensorFlow Lite`. Download the model.
-3. **Unzip and place the model**: Unzip the downloaded file and move the `.tflite` file to the `models` directory.
-4. **Run the application**: Use the path to the new model in your command:
+3. **Unzip and place the model**: Unzip the downloaded file and move the `.tflite` and `labels.txt` files to the `models` directory.
+4. **Run the application**: Use the path to the new model and labels in your command:
 
     ```bash
     python main.py --model=./models/your_teachable_machine_model.tflite --debug
