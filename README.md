@@ -29,7 +29,7 @@ A `setup.sh` script is provided to automate the installation process. Make sure 
 Run the following command to execute the setup script:
 
 ```bash
-bash setup.sh
+source setup.sh
 ```
 
 ## Usage
@@ -73,7 +73,7 @@ To export a model from Teachable Machine:
 
 ## Acknowledgements
 
-This project is inspired by the [RPi5 YOLOv8 Project](https://github.com/JungLearnBot/RPi5_yolov8) and adapted to use TensorFlow Lite for flower detection.
+This project is inspired by the [RPi5 YOLOv8 Project](https://github.com/JungLearnBot/RPi5_yolov8) and adapted to use  a TensorFlow Lite model generated with Teachable Machine for flower detection.
 
 ## License
 
