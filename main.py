@@ -6,8 +6,8 @@ from video_thread import VideoThreadPiCam
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="../models/v1/model.tflite")
-    parser.add_argument("--labels", default="../models/v1/labels.txt")
+    parser.add_argument("--model", default="./models/v1/model.tflite")
+    parser.add_argument("--labels", default="./models/v1/labels.txt")
     parser.add_argument('--camera_test', action=argparse.BooleanOptionalAction)
     parser.add_argument('--debug', action=argparse.BooleanOptionalAction)
 
