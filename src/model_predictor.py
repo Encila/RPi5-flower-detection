@@ -49,6 +49,6 @@ class ModelPredictor:
         output_data = self.interpreter.get_tensor(output_details[0]['index'])[0]
         probabilities = tf.nn.softmax(output_data.astype(np.float32)).numpy()
         class_id = np.argmax(probabilities)
-        confidence = np.max(probabilities)
+        confidence = probabilities[class_id]
         logging.debug(f"output_data -> {output_data}")
         return class_id, confidence
