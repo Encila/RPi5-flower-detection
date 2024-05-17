@@ -1,10 +1,16 @@
 import sys
 import argparse
+import logging
 from PyQt5.QtWidgets import QApplication
 from display import App
 from video_thread import VideoThreadPiCam
 
+def setup_logging():
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
 if __name__ == "__main__":
+    setup_logging()
+    
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default="../models/v1/model.tflite")
     parser.add_argument("--labels", default="../models/v1/labels.txt")
@@ -22,4 +28,4 @@ if __name__ == "__main__":
         main_app.show()
         sys.exit(app.exec_())
     else:
-        print("No UI mode not supported with Teachable Machine model.")
+        logging.error("No UI mode not supported with Teachable Machine model.")

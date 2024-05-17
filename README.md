@@ -29,18 +29,24 @@ A `setup.sh` script is provided to automate the installation process. Make sure 
 Run the following command to execute the setup script:
 
 ```bash
-source setup.sh
+source setup/setup.sh
 ```
 
 ## Usage
 
 ### Running the Application
 
-To run the application with the UI:
+To run the application with the default model and labels:
 
 ```bash
 python main.py --debug
 ```
+
+### Arguments
+
+`--model`: Path to the TensorFlow Lite model file.
+`--labels`: Path to the labels file.
+`--debug`: Enable debug mode for additional logging.
 
 ### Running Exported Models
 
@@ -61,7 +67,7 @@ To export a model from Teachable Machine:
 4. **Run the application**: Use the path to the new model and labels in your command:
 
     ```bash
-    python main.py --model=./models/your_teachable_machine_model.tflite --debug
+    python src/main.py --model=./models/your_teachable_machine_model.tflite --labels models/labels.txt --debug
     ```
 
 ## Troubleshooting

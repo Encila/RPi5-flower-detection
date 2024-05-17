@@ -3,9 +3,17 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PyQt5.QtCore import pyqtSlot, Qt
 import cv2
 import numpy as np
-import tensorflow as tf
+import logging
+from model_predictor import ModelPredictor
 
 class App(QWidget):
+    """
+    A class to represent the application GUI.
+
+    Attributes:
+    camera_test_only (bool): Flag to determine if only the camera test is running.
+    model_path (str): Path to the model file.
+    """
     def __init__(self, camera_test_only, model_path):
         super().__init__()
         self.camera_test_only = camera_test_only
@@ -17,38 +25,12 @@ class App(QWidget):
         vbox = QVBoxLayout()
         vbox.addWidget(self.image_label)
         self.setLayout(vbox)
-        self.interpreter = self.load_model(model_path)
-
-    def load_model(self, model_path):
-        interpreter = tf.lite.Interpreter(model_path=str(model_path))
-        interpreter.allocate_tensors()
-        self.default_labels = {0: 'orchidée pyramidale', 1: 'autre orchidée', 2: 'humain'}
-        return interpreter
-
-    def predict(self, frame):
-        input_details = self.interpreter.get_input_details()
-        output_details = self.interpreter.get_output_details()
-        input_shape = input_details[0]['shape']
-        print(f"DEBUG: input_shape -> {input_shape}")
-
-        if len(input_shape) != 4 or input_shape[0] != 1:
-            raise ValueError(f"Unexpected input_shape: {input_shape}")
-
-        frame = cv2.resize(frame, (input_shape[2], input_shape[1])).astype(np.uint8)
-        frame = np.expand_dims(frame, axis=0)
-        self.interpreter.set_tensor(input_details[0]['index'], frame)
-        self.interpreter.invoke()
-        output_data = self.interpreter.get_tensor(output_details[0]['index'])[0]
-        probabilities = tf.nn.softmax(output_data.astype(np.float32)).numpy()
-        class_id = np.argmax(probabilities)
-        confidence = np.max(probabilities)
-        print("DEBUG : output_data ->", output_data)
-        return class_id, confidence
+        self.predictor = ModelPredictor(model_path)
 
     @pyqtSlot(np.ndarray)
     def update_image(self, cv_img):
-        class_id, confidence = self.predict(cv_img)
-        label = f"{self.default_labels[class_id]} ({confidence * 100:.2f}%)"
+        class_id, confidence = self.predictor.predict(cv_img)
+        label = f"{self.predictor.default_labels[class_id]} ({confidence * 100:.2f}%)"
         
         threshold = 0.5
         if confidence > threshold:
