@@ -25,7 +25,7 @@ class App(QWidget):
         vbox = QVBoxLayout()
         vbox.addWidget(self.image_label)
         self.setLayout(vbox)
-        self.predictor = ModelPredictor(model_path)
+        self.predictor = ModelPredictor(model_path, labels_path)
 
     @pyqtSlot(np.ndarray)
     def update_image(self, cv_img):
