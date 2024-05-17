@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     if args.debug or args.camera_test:
         app = QApplication(sys.argv)
-        main_app = App(camera_test_only=args.camera_test, model_path=args.model)
+        main_app = App(camera_test_only=args.camera_test, model_path=args.model, labels_path=args.labels)
         main_app.thread = VideoThreadPiCam()
         main_app.thread.change_pixmap_signal.connect(main_app.update_image)
         main_app.thread.start()
