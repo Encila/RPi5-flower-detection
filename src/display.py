@@ -14,7 +14,7 @@ class App(QWidget):
     camera_test_only (bool): Flag to determine if only the camera test is running.
     model_path (str): Path to the model file.
     """
-    def __init__(self, camera_test_only, model_path):
+    def __init__(self, camera_test_only, model_path, labels_path):
         super().__init__()
         self.camera_test_only = camera_test_only
         self.setWindowTitle("Qt UI")
