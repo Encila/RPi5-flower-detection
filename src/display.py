@@ -29,8 +29,9 @@ class App(QWidget):
 
     @pyqtSlot(np.ndarray)
     def update_image(self, cv_img):
+        logging.debug("Updating image...")
         class_id, confidence = self.predictor.predict(cv_img)
-        label = f"{self.predictor.default_labels[class_id]} ({confidence * 100:.2f}%)"
+        label = f"{self.predictor.labels[class_id]} ({confidence * 100:.2f}%)"
         
         threshold = 0.5
         if confidence > threshold:
@@ -47,7 +48,7 @@ class App(QWidget):
                 label_x = x if x + w + 10 < self.disply_width else x - w
                 label_y = y - 10 if y - 10 > 0 else y + h + 20
 
-                cv2.putText(cv_img, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+                cv_img = cv2.putText(cv_img, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
 
         qt_img = self.convert_cv_qt(cv_img)
         self.image_label.setPixmap(qt_img)
