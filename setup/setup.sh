@@ -21,6 +21,9 @@ conda activate flower_detection
 sudo apt install -y python3-libcamera python3-kms++
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg python3-pip
 
+# Install libcap for picamera2
+sudo apt install -y libcap2 libcap-dev
+
 # Install Python packages from requirements.txt
 if [ -f setup/requirements.txt ]; then
     pip install -r setup/requirements.txt
