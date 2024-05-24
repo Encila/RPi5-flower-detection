@@ -16,7 +16,7 @@ sudo apt install -y python3-libcamera python3-kms++
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg python3-pip
 
 # Install Python packages from requirements.txt
-pip install -r setup/requirements.txt
+pip install -r requirements.txt
 
 # Copy necessary libraries to conda environment
 sudo cp -r /usr/lib/python3/dist-packages/libcamera ~/miniconda3/envs/flower_detection/lib/python3.11/site-packages/
