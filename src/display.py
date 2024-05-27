@@ -20,7 +20,7 @@ class App(QWidget):
 
     @pyqtSlot(np.ndarray)
     def update_image(self, cv_img):
-        class_id, confidence = self.predict(cv_img)
+        class_id, confidence = self.predictor.predict(cv_img)
         label = f"{self.predictor.labels[class_id]} ({confidence * 100:.2f}%)"
         
         threshold = 0.5
