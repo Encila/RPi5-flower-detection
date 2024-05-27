@@ -15,6 +15,10 @@ conda activate flower_detection
 sudo apt install -y python3-libcamera python3-kms++
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg python3-pip
 
+# Prevent tensorflow from being blocked by h5py version
+sudo apt install -y python3-dev libhdf5-dev
+sudo apt install -y python3-h5py 
+
 # Install Python packages from requirements.txt
 pip install -r setup/requirements.txt
 
