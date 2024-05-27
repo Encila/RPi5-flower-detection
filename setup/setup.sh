@@ -34,4 +34,8 @@ conda install pyqt -y
 pip uninstall -y opencv-python
 pip install opencv-python-headless==4.6.0.66
 
+# Go back to the directory
+
+cd ~/Desktop/RPi5-flower-detection
+
 echo Setup complete. Activate the environment using 'conda activate flower_detection' and run your scripts.
