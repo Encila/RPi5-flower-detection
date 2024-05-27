@@ -32,7 +32,7 @@ mv -vf libstdc++.so.6 libstdc++.so.6.old
 ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 ./libstdc++.so.6
 
 # Install QT5
-conda install pyqt -y
+conda install pyqt5 -y
 
 # Replace opencv-python with opencv-python-headless
 pip uninstall -y opencv-python
