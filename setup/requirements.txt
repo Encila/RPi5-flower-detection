@@ -4,5 +4,5 @@ onnx==1.15.0
 onnxruntime==1.16.3
 onnxsim==0.4.33
 flatbuffers==23.5.26
-picamera2
-pyopengl
+picamera2==0.3.18
+pyopengl==3.1.7
