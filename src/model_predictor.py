@@ -42,7 +42,7 @@ class ModelPredictor:
         if len(input_shape) != 4 or input_shape[0] != 1:
             raise ValueError(f"Unexpected input_shape: {input_shape}")
 
-        frame = cv2.resize(frame, (input_shape[2], input_shape[1])).astype(np.uint8) / 255.0  # Normalize the image
+        frame = (cv2.resize(frame, (input_shape[2], input_shape[1])) / 255.0).astype(np.uint8)   # Normalize the image
         frame = np.expand_dims(frame, axis=0)
         self.interpreter.set_tensor(input_details[0]['index'], frame)
         self.interpreter.invoke()
