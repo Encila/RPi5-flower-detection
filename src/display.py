@@ -5,9 +5,8 @@ import cv2
 import numpy as np
 from model_predictor import ModelPredictor
 class App(QWidget):
-    def __init__(self, camera_test_only, model_path, labels_path):
+    def __init__(self, model_path, labels_path):
         super().__init__()
-        self.camera_test_only = camera_test_only
         self.setWindowTitle("Qt UI")
         self.disply_width = 640
         self.display_height = 480
