@@ -4,10 +4,11 @@ from PyQt5.QtCore import pyqtSlot, Qt
 import cv2
 import numpy as np
 from model_predictor import ModelPredictor
+import logging
 class App(QWidget):
     def __init__(self, model_path, labels_path):
         super().__init__()
-        self.setWindowTitle("Qt UI")
+        self.setWindowTitle("Flower Detection App")
         self.disply_width = 640
         self.display_height = 480
         self.image_label = QLabel(self)
@@ -19,6 +20,7 @@ class App(QWidget):
 
     @pyqtSlot(np.ndarray)
     def update_image(self, cv_img):
+        logging.info("Updating image...")
         class_id, confidence = self.predictor.predict(cv_img)
         label = f"{self.predictor.labels[class_id]} ({confidence * 100:.2f}%)"
         
@@ -32,7 +34,7 @@ class App(QWidget):
             if contours:
                 c = max(contours, key=cv2.contourArea)
                 x, y, w, h = cv2.boundingRect(c)
-                cv2.rectangle(cv_img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                cv2.rectangle(cv_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 
                 label_x = x if x + w + 10 < self.disply_width else x - w
                 label_y = y - 10 if y - 10 > 0 else y + h + 20
