@@ -1,10 +1,14 @@
 # waiting_screen.py
+import sys
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
+from PyQt5.QtWidgets import QApplication
+from video_thread import VideoThreadPiCam
+
 
 class WaitingScreen(Screen):
     def __init__(self, **kwargs):
@@ -37,8 +41,14 @@ class WaitingScreen(Screen):
 
         self.add_widget(layout)
 
-    def start_recognition(self, instance):
-        self.manager.current = 'main_screen'
+    def start_recognition(self, model_path, labels_path):
+        app = QApplication(sys.argv)
+        main_app = App(model_path=model_path, labels_path=labels_path)
+        main_app.thread = VideoThreadPiCam()
+        main_app.thread.change_pixmap_signal.connect(main_app.update_image)
+        main_app.thread.start()
+        main_app.show()
+        sys.exit(app.exec_())
 
     def close_application(self, instance):
         App.get_running_app().stop()
