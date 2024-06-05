@@ -1,8 +1,8 @@
-import sys
 import argparse
-from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
+from kivy.app import App
 from waiting_screen import WaitingScreen
+from display import AppScreen
 
 def setup_logging():
     import logging
@@ -25,8 +25,8 @@ def setup_logging():
     logger = logging.getLogger(__name__)
     coloredlogs.install(level='INFO', logger=logger, fmt='[%(asctime)s] [%(process)d] %(levelname)s %(message)s', level_styles=custom_colors, field_styles=field_styles)
 
-class FlowerRecognitionApp():
-    def run(self):
+class FlowerRecognitionApp(App):
+    def build(self):
         parser = argparse.ArgumentParser()
         parser.add_argument("--model", default="models/v1/model.tflite")
         parser.add_argument("--labels", default="models/v1/labels.txt")
@@ -35,6 +35,8 @@ class FlowerRecognitionApp():
 
         sm = ScreenManager()
         sm.add_widget(WaitingScreen(labels_path=args.labels, model_path=args.model, name='waiting_screen'))
+        sm.add_widget(AppScreen(labels_path=args.labels, model_path=args.model, name='main_screen'))
+        sm.current = 'waiting_screen'
         return sm
 
 if __name__ == "__main__":
