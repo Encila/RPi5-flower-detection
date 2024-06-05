@@ -3,7 +3,6 @@ import argparse
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
 from waiting_screen import WaitingScreen
-from main_screen import MainScreen
 
 def setup_logging():
     import logging
@@ -35,9 +34,7 @@ class FlowerRecognitionApp():
         args = parser.parse_args()
 
         sm = ScreenManager()
-        sm.add_widget(WaitingScreen(name='waiting_screen'))
-        sm.add_widget(MainScreen(model_path=args.model, labels_path=args.labels, name='main_screen'))
-
+        sm.add_widget(WaitingScreen(name='waiting_screen'), model_path=args.model, labels_path=args.labels)
         return sm
 
 if __name__ == "__main__":

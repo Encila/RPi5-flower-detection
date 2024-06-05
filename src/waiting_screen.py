@@ -11,9 +11,11 @@ from video_thread import VideoThreadPiCam
 
 
 class WaitingScreen(Screen):
-    def __init__(self, **kwargs):
+    def __init__(self, model_path, labels_path, **kwargs):
         super().__init__(**kwargs)
         layout = FloatLayout()
+        self.model_path = model_path
+        self.labels_path = labels_path
 
         self.label = Label(
             text="Press the button to start flower recognition",
