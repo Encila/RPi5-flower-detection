@@ -6,7 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
 from kivy.core.window import Window
-from src.display import App
+from display import App
 
 class MainScreen(Screen):
     def __init__(self, model_path, labels_path, **kwargs):
