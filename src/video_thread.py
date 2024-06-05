@@ -2,6 +2,7 @@ from PyQt5.QtCore import pyqtSignal, QThread
 import numpy as np
 import time
 from picamera2 import Picamera2
+import logging
 
 class VideoThreadPiCam(QThread):
     change_pixmap_signal = pyqtSignal(np.ndarray)
@@ -11,10 +12,12 @@ class VideoThreadPiCam(QThread):
         self.grab_frame = True
 
     def run(self):
+        logging.info("Starting video thread ...")
         picam2 = Picamera2()
-        camera_config = picam2.create_video_configuration(main={"size": (640, 480), "format": "RGB888"}, raw={"size": (640, 480)})
+        camera_config = picam2.create_video_configuration(main={"size": (2592, 2592), "format": "RGB888"}, raw={"size": (2592, 2592)})
         picam2.configure(camera_config)
         picam2.start()
+        logging.info("Video started !")
 
         while True:
             if self.grab_frame:
