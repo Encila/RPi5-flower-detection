@@ -37,7 +37,6 @@ class ModelPredictor:
         input_details = self.interpreter.get_input_details()
         output_details = self.interpreter.get_output_details()
         input_shape = input_details[0]['shape']
-        logging.debug(f"input_shape -> {input_shape}")
 
         if len(input_shape) != 4 or input_shape[0] != 1:
             raise ValueError(f"Unexpected input_shape: {input_shape}")
@@ -52,3 +51,6 @@ class ModelPredictor:
         confidence = probabilities[class_id]
         logging.debug(f"output_data -> {output_data}")
         return class_id, confidence
+
+
+#Corinne

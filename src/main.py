@@ -42,4 +42,3 @@ if __name__ == "__main__":
     main_app.thread.start()
     main_app.show()
     sys.exit(app.exec_())
-
