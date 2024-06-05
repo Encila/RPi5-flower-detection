@@ -1,21 +1,18 @@
-# waiting_screen.py
-import sys
-from kivy.app import App
+from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import Screen
-from kivy.core.window import Window
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from PyQt5.QtWidgets import QApplication
-from video_thread import VideoThreadPiCam
-
+from kivy.app import App
+from kivy.core.window import Window
 
 class WaitingScreen(Screen):
     def __init__(self, model_path, labels_path, **kwargs):
         super().__init__(**kwargs)
-        layout = FloatLayout()
         self.model_path = model_path
         self.labels_path = labels_path
+
+        layout = FloatLayout()
 
         self.label = Label(
             text="Press the button to start flower recognition",
@@ -43,14 +40,8 @@ class WaitingScreen(Screen):
 
         self.add_widget(layout)
 
-    def start_recognition(self, model_path, labels_path):
-        app = QApplication(sys.argv)
-        main_app = App(model_path=model_path, labels_path=labels_path)
-        main_app.thread = VideoThreadPiCam()
-        main_app.thread.change_pixmap_signal.connect(main_app.update_image)
-        main_app.thread.start()
-        main_app.show()
-        sys.exit(app.exec_())
+    def start_recognition(self, instance):
+        self.manager.current = 'main_screen'
 
     def close_application(self, instance):
         App.get_running_app().stop()
