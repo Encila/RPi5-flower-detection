@@ -34,7 +34,7 @@ class FlowerRecognitionApp():
         args = parser.parse_args()
 
         sm = ScreenManager()
-        sm.add_widget(WaitingScreen(name='waiting_screen'), model_path=args.model, labels_path=args.labels)
+        sm.add_widget(WaitingScreen(labels_path=args.labels, model_path=args.model, name='waiting_screen'))
         return sm
 
 if __name__ == "__main__":
