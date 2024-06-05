@@ -27,7 +27,7 @@ def setup_logging():
     coloredlogs.install(level='INFO', logger=logger, fmt='[%(asctime)s] [%(process)d] %(levelname)s %(message)s', level_styles=custom_colors, field_styles=field_styles)
 
 class FlowerRecognitionApp():
-    def build(self):
+    def run(self):
         parser = argparse.ArgumentParser()
         parser.add_argument("--model", default="models/v1/model.tflite")
         parser.add_argument("--labels", default="models/v1/labels.txt")
