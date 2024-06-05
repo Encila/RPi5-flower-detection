@@ -1,12 +1,13 @@
-# main_screen.py
+import sys
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
 from kivy.core.window import Window
 from display import App
+from PyQt5.QtWidgets import QApplication
+
 
 class MainScreen(Screen):
     def __init__(self, model_path, labels_path, **kwargs):
@@ -39,9 +40,17 @@ class MainScreen(Screen):
         layout.add_widget(self.close_button)
 
         self.add_widget(layout)
+        
+        self.start_recognition(model_path, labels_path)
 
-    def update_image(self, image):
-        self.image.texture = image
+    def start_recognition(self, model_path, labels_path):
+        app = QApplication(sys.argv)
+        main_app = App(model_path=model_path, labels_path=labels_path)
+        main_app.thread = main_app.VideoThreadPiCam()
+        main_app.thread.change_pixmap_signal.connect(main_app.update_image)
+        main_app.thread.start()
+        main_app.show()
+        sys.exit(app.exec_())
 
     def close_application(self, instance):
         App.get_running_app().stop()
