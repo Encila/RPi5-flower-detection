@@ -1,4 +1,5 @@
 # display.py
+from coloraide import Color
 from kivy.uix.screenmanager import Screen
 from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
