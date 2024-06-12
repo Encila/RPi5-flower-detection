@@ -6,6 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.graphics.texture import Texture
+from kivy.graphics import Ellipse, Color, Rectangle
 from kivy.clock import Clock
 import cv2
 from model_predictor import ModelPredictor
