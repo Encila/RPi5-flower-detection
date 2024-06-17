@@ -9,8 +9,8 @@ class App(QWidget):
     def __init__(self, model_path, labels_path):
         super().__init__()
         self.setWindowTitle("Flower Detection App")
-        self.display_width = 2592
-        self.display_height = 2592
+        self.display_width = 800
+        self.display_height = 480
         self.image_label = QLabel(self)
         self.image_label.resize(self.display_width, self.display_height)
         vbox = QVBoxLayout()
@@ -50,5 +50,5 @@ class App(QWidget):
         h, w, ch = rgb_image.shape
         bytes_per_line = ch * w
         convert_to_qt_format = QtGui.QImage(rgb_image.data, w, h, bytes_per_line, QtGui.QImage.Format_RGB888)
-        p = convert_to_qt_format #.scaled(self.display_width, self.display_height, Qt.KeepAspectRatio)
+        p = convert_to_qt_format.scaled(self.display_width, self.display_height, Qt.KeepAspectRatio)
         return QtGui.QPixmap.fromImage(p)
