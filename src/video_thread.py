@@ -14,7 +14,7 @@ class VideoThreadPiCam(QThread):
     def run(self):
         logging.info("Starting video thread ...")
         picam2 = Picamera2()
-        camera_config = picam2.create_video_configuration(main={"format": "RGB888"}) #"size": (2592, 2592)
+        camera_config = picam2.create_video_configuration(main={#"size": (2592, 2592), "format": "RGB888"}) 
         picam2.configure(camera_config)
         picam2.start()
         logging.info("Video started !")
