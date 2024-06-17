@@ -51,6 +51,3 @@ class ModelPredictor:
         confidence = probabilities[class_id]
         logging.debug(f"output_data -> {output_data}")
         return class_id, confidence
-
-
-#Corinne
