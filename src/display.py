@@ -12,7 +12,7 @@ class App(QWidget):
         self.display_width = 800
         self.display_height = 480
         self.image_label = QLabel(self)
-        self.image_label.resize(self.display_width, self.display_height)
+        #self.image_label.resize(self.display_width, self.display_height)
         vbox = QVBoxLayout()
         vbox.addWidget(self.image_label)
         self.setLayout(vbox)
